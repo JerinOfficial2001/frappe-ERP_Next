@@ -1,0 +1,42 @@
+set -o pipefail; /usr/bin/mariadb-dump --user=_07603f78d224bdf2 --host=127.0.0.1 --port=3306 --password=********** --single-transaction --quick --lock-tables=false _07603f78d224bdf2 | /usr/bin/gzip >> ./tfrenzy.local/private/backups/20250526_173007-tfrenzy_local-database.sql.gz
+
+Backup Summary for tfrenzy.local at 2025-05-26 17:30:09.508557
+Config  : ./tfrenzy.local/private/backups/20250526_173007-tfrenzy_local-site_config_backup.json 137.0B
+Database: ./tfrenzy.local/private/backups/20250526_173007-tfrenzy_local-database.sql.gz         832.1KiB
+Backup for Site tfrenzy.local has been successfully completed
+set -o pipefail; /usr/bin/mariadb-dump --user=_07603f78d224bdf2 --host=127.0.0.1 --port=3306 --password=********** --single-transaction --quick --lock-tables=false _07603f78d224bdf2 | /usr/bin/gzip >> ./tfrenzy.local/private/backups/20250527_113002-tfrenzy_local-database.sql.gz
+
+Backup Summary for tfrenzy.local at 2025-05-27 11:30:04.993737
+Config  : ./tfrenzy.local/private/backups/20250527_113002-tfrenzy_local-site_config_backup.json 137.0B
+Database: ./tfrenzy.local/private/backups/20250527_113002-tfrenzy_local-database.sql.gz         850.6KiB
+Backup for Site tfrenzy.local has been successfully completed
+set -o pipefail; /usr/bin/mariadb-dump --user=_07603f78d224bdf2 --host=127.0.0.1 --port=3306 --password=********** --single-transaction --quick --lock-tables=false _07603f78d224bdf2 | /usr/bin/gzip >> ./tfrenzy.local/private/backups/20250528_113002-tfrenzy_local-database.sql.gz
+
+Backup Summary for tfrenzy.local at 2025-05-28 11:30:04.928211
+Config  : ./tfrenzy.local/private/backups/20250528_113002-tfrenzy_local-site_config_backup.json 167.0B
+Database: ./tfrenzy.local/private/backups/20250528_113002-tfrenzy_local-database.sql.gz         874.2KiB
+Backup for Site tfrenzy.local has been successfully completed
+set -o pipefail; /usr/bin/mariadb-dump --user=_07603f78d224bdf2 --host=127.0.0.1 --port=3306 --password=********** --single-transaction --quick --lock-tables=false _07603f78d224bdf2 | /usr/bin/gzip >> ./tfrenzy.local/private/backups/20250528_173002-tfrenzy_local-database.sql.gz
+
+Backup Summary for tfrenzy.local at 2025-05-28 17:30:06.062551
+Config  : ./tfrenzy.local/private/backups/20250528_173002-tfrenzy_local-site_config_backup.json 167.0B
+Database: ./tfrenzy.local/private/backups/20250528_173002-tfrenzy_local-database.sql.gz         899.4KiB
+Backup for Site tfrenzy.local has been successfully completed
+set -o pipefail; /usr/bin/mariadb-dump --user=_07603f78d224bdf2 --host=127.0.0.1 --port=3306 --password=********** --single-transaction --quick --lock-tables=false _07603f78d224bdf2 | /usr/bin/gzip >> ./tfrenzy.local/private/backups/20250529_113002-tfrenzy_local-database.sql.gz
+
+Backup Summary for tfrenzy.local at 2025-05-29 11:30:04.336063
+Config  : ./tfrenzy.local/private/backups/20250529_113002-tfrenzy_local-site_config_backup.json 167.0B
+Database: ./tfrenzy.local/private/backups/20250529_113002-tfrenzy_local-database.sql.gz         903.3KiB
+Backup for Site tfrenzy.local has been successfully completed
+set -o pipefail; /usr/bin/mariadb-dump --user=_07603f78d224bdf2 --host=127.0.0.1 --port=3306 --password=********** --single-transaction --quick --lock-tables=false _07603f78d224bdf2 | /usr/bin/gzip >> ./tfrenzy.local/private/backups/20250529_173002-tfrenzy_local-database.sql.gz
+
+Backup Summary for tfrenzy.local at 2025-05-29 17:30:05.696276
+Config  : ./tfrenzy.local/private/backups/20250529_173002-tfrenzy_local-site_config_backup.json 167.0B
+Database: ./tfrenzy.local/private/backups/20250529_173002-tfrenzy_local-database.sql.gz         956.5KiB
+Backup for Site tfrenzy.local has been successfully completed
+set -o pipefail; /usr/bin/mariadb-dump --user=_07603f78d224bdf2 --host=127.0.0.1 --port=3306 --password=********** --single-transaction --quick --lock-tables=false _07603f78d224bdf2 | /usr/bin/gzip >> ./tfrenzy.local/private/backups/20250623_173009-tfrenzy_local-database.sql.gz
+
+Backup Summary for tfrenzy.local at 2025-06-23 17:30:13.850653
+Config  : ./tfrenzy.local/private/backups/20250623_173009-tfrenzy_local-site_config_backup.json 167.0B
+Database: ./tfrenzy.local/private/backups/20250623_173009-tfrenzy_local-database.sql.gz         957.1KiB
+Backup for Site tfrenzy.local has been successfully completed
