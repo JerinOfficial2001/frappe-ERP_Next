@@ -1,0 +1,61 @@
+<h2 class="title">Available Spare Stocks</h2>
+<div class="stock-grid">
+  {% for product in products %}
+    <a class="stock-card" href="/status?name={{ product.name }}">
+        <div class="image-container">
+            <img src="{{ product.image }}" alt="Spare Image" />
+        </div>
+      <h3>{{ product.spare_name }}</h3>
+      <p><strong>ID:</strong> {{ product.name }}</p>
+    </a>
+  {% endfor %}
+</div>
+
+<style>
+  .title {
+    font-size: 28px;
+    margin-bottom: 20px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+  .image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px; /* Set a fixed height for the image container */
+  }
+  .image-container img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Ensures the image fits within the container */
+  }
+  .stock-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+  }
+  .stock-card {
+    width: 220px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s;
+  }
+  .stock-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  }
+  .stock-card img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+</style>

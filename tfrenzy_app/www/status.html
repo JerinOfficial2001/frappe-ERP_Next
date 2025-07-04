@@ -1,0 +1,155 @@
+<div class="container">
+    <div style="display: flex; gap: 2rem;">
+    <div id="part-info" style="flex: 1;"></div>
+    <div id="status-stepper" style="flex: 1;"></div>
+</div>
+  <div class="product">
+    <img src={{product.image}} alt="Product Image" />
+    <h3>Product: {{ product.spare_name }}</h3>
+    <p>Status: {{ status }}</p>
+  </div>
+
+  <div class="stepper">
+    {% for i, step in enumerate(steps) %}
+      {% set status_class = "step" %}
+      {% if steps.index(status) > i %}
+        {% set status_class = "step completed" %}
+      {% elif step == status %}
+        {% set status_class = "step active" %}
+      {% endif %}
+      <div class="{{ status_class }}">
+        <div class="circle">{{ i + 1 }}</div>
+        <div class="content">
+          <div class="label">{{ step }}</div>
+          <div class="description">
+            {% if step == "Received" %}The device has been received at our service center.
+            {% elif step == "Diagnosed" %}Technical diagnosis is completed, issues identified.
+            {% elif step == "In Repair" %}The device is currently being repaired by technicians.
+            {% elif step == "QC Passed" %}Quality check completed and device approved.
+            {% elif step == "Ready for Sale" %}The device is ready to be sold.
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+  .container {
+    display: flex;
+    max-width: 800px;
+    margin: 40px auto;
+    font-family: Arial, sans-serif;
+  }
+
+  .product {
+    flex: 1;
+    padding: 20px;
+    border: 1px solid #ddd;
+    margin-right: 40px;
+    text-align: center;
+  }
+  .product img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-bottom: 15px;
+  }
+  .product h3 {
+    margin: 0 0 10px;
+  }
+  .product p {
+    font-size: 16px;
+    color: #333;
+  }
+
+  .stepper {
+    flex: 1;
+    position: relative;
+    padding-left: 40px;
+  }
+
+  .stepper::before {
+    content: "";
+    position: absolute;
+    left: 9px;
+    top: 10px;
+    bottom: 10px;
+    width: 2px;
+    border-left: 2px dashed #999;
+  }
+
+  .step {
+    position: relative;
+    padding-bottom: 40px;
+  }
+  .step:last-child {
+    padding-bottom: 0;
+  }
+
+  .circle {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    background: #ccc;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 18px;
+    font-weight: bold;
+    color: white;
+    font-size: 12px;
+  }
+  .step.completed .circle {
+    background: #4caf50;
+  }
+  .step.active .circle {
+    background: #2196f3;
+  }
+
+  .content {
+    margin-left: 30px;
+  }
+  .label {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  .description {
+    font-size: 14px;
+    color: #666;
+  }
+</style>
+
+<script>
+frappe.ready(function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    const cart_id = urlParams.get('cart');
+
+    frappe.call({
+        method: "frappe.client.get",
+        args: {
+            doctype: "User Cart",
+            name: cart_id
+        },
+        callback: function (r) {
+            const item = r.message;
+            document.getElementById("part-info").innerHTML = `
+                <h3>${item.mobile_part}</h3>
+                <p>Ordered on: ${item.order_date}</p>
+                <p>Status: ${item.status}</p>
+            `;
+
+            const steps = ["Received", "Diagnosing", "Refurbishing", "Testing", "Completed"];
+            let html = "<ul style='list-style:none'>";
+            steps.forEach(step => {
+                const done = steps.indexOf(step) <= steps.indexOf(item.status);
+                html += `<li style="color:${done ? 'green' : '#ccc'}">${step}</li>`;
+            });
+            html += "</ul>";
+            document.getElementById("status-stepper").innerHTML = html;
+        }
+    });
+});
+</script>

@@ -1,0 +1,25 @@
+<div id="cart-items"></div>
+
+<script>
+frappe.ready(function () {
+    frappe.call({
+        method: "frappe.client.get_list",
+        args: {
+            doctype: "User Cart",
+            filters: { user: frappe.session.user },
+            fields: ["name", "mobile_part", "order_date", "status"],
+            limit_page_length: 50
+        },
+        callback: function (r) {
+            let html = "<ul>";
+            r.message.forEach(item => {
+                html += `<li>
+                    <a href="/status?cart=${item.name}">${item.mobile_part}</a> - ${item.status}
+                </li>`;
+            });
+            html += "</ul>";
+            document.getElementById("cart-items").innerHTML = html;
+        }
+    });
+});
+</script>

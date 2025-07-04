@@ -1,0 +1,56 @@
+<h2>Add Refurbished Product</h2>
+<form id="productForm">
+  <input type="text" name="spare_name" placeholder="Spare Name" required><br><br>
+  <input type="file" name="image" accept="image/*" required><br><br>
+  <button type="submit">Add Product</button>
+</form>
+
+<p id="result"></p>
+
+<script>
+  document.getElementById("productForm").onsubmit = async function (e) {
+    e.preventDefault();
+    const form = e.target;
+    const file = form.image.files[0];
+    const spare_name = form.spare_name.value;
+
+    if (!file) {
+      document.getElementById("result").innerText = "Please select an image.";
+      return;
+    }
+
+   const formData = new FormData();
+formData.append("file", file);
+formData.append("is_private", 0);
+formData.append("doctype", "TFrenzy DocType");
+
+fetch("/api/method/upload_file", {
+  method: "POST",
+  body: formData
+});
+
+    const uploadData = await uploadRes.json();
+    if (!uploadData.message || !uploadData.message.file_url) {
+      document.getElementById("result").innerText = "Image upload failed.";
+      return;
+    }
+
+    const image_url = uploadData.message.file_url;
+
+    // Step 2: Create TFrenzy DocType record
+    const createRes = await fetch("/api/method/your_app.api.public_product.add_product", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ spare_name, image: image_url })
+    });
+
+    const createData = await createRes.json();
+
+    if (createData.message && createData.message.success) {
+      document.getElementById("result").innerText = `Product added! ID: ${createData.message.name}`;
+      form.reset();
+    } else {
+      document.getElementById("result").innerText = "Product creation failed.";
+    }
+  };
+</script>

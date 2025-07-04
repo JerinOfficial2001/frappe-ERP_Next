@@ -1,0 +1,39 @@
+<div id="parts-list"></div>
+
+<script>
+frappe.ready(function () {
+    frappe.call({
+        method: "frappe.client.get_list",
+        args: {
+            doctype: "Mobile Part",
+            fields: ["name", "image", "description", "part_number"],
+            limit_page_length: 50
+        },
+        callback: function (r) {
+            let html = "<div class='grid'>";
+            r.message.forEach(part => {
+                html += `
+                    <div class="card">
+                        <img src="${part.image}" width="100" />
+                        <h4>${part.name}</h4>
+                        <p>${part.description}</p>
+                        <button onclick="orderPart('${part.name}')">Order</button>
+                    </div>
+                `;
+            });
+            html += "</div>";
+            document.getElementById("parts-list").innerHTML = html;
+        }
+    });
+});
+
+function orderPart(part_name) {
+    frappe.call({
+        method: "your_app.api.cart.add_part_to_cart",
+        args: { part_name },
+        callback: function (r) {
+            frappe.msgprint(r.message);
+        }
+    });
+}
+</script>

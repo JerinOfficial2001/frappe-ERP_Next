@@ -4,6 +4,22 @@ app_publisher = "Jerin"
 app_description = "Distribution management system"
 app_email = "jerin.t@tfrenzy.com"
 app_license = "mit"
+fixtures = [
+    {
+        "dt": "DocType",
+        "filters": [
+            ["name", "in", ["TFrenzy DocType","User Cart", "Mobile Part"]]
+        ]
+    }
+]
+website_route_rules = [
+    {"from_route": "/home", "to_route": "home"}
+]
+# hooks.py
+doc_events = {}
+override_whitelisted_methods = {}
+app_include_desktop = "tfrenzy_app/config/desktop.py"
+# Whitelisted method exposed automatically if @frappe.whitelist is used
 
 # Apps
 # ------------------
